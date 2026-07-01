@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Seru IT-Insight! ✨</title>
+    <!-- Font Lucu & Ceria -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ================================================================= */
+        /* 1. BAGIAN CSS (STYLE DESAIN IMUT, BIRU MUDA, & 100% WIDTH)         */
+        /* ================================================================= */
+        :root {
+            --bg-biru-muda: #e0f2fe;
+            /* Light Blue */
+            --bg-putih: #ffffff;
+            --biru-utama: #38bdf8;
+            --biru-gelap: #0284c7;
+            --teks-utama: #334155;
+            --aksen-kuning: #fde047;
+            --aksen-pink: #f472b6;
+            --aksen-hijau: #4ade80;
+            --aksen-ungu: #c084fc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-biru-muda);
+            color: var(--teks-utama);
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.2rem;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Latar belakang gelembung ceria bergerak */
+        .bubble-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: floatUp infinite ease-in;
+        }
+
+        .bubble:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 10%;
+            animation-duration: 8s;
+        }
+
+        .bubble:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            left: 20%;
+            animation-duration: 5s;
+            animation-delay: 1s;
+        }
+
+        .bubble:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            left: 35%;
+            animation-duration: 7s;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(4) {
+            width: 90px;
+            height: 90px;
+            left: 50%;
+            animation-duration: 11s;
+        }
+
+        .bubble:nth-child(5) {
+            width: 50px;
+            height: 50px;
+            left: 70%;
+            animation-duration: 6s;
+            animation-delay: 3s;
+        }
+
+        .bubble:nth-child(6) {
+            width: 120px;
+            height: 120px;
+            left: 85%;
+            animation-duration: 10s;
+            animation-delay: 2s;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.8);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-20vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* CONTAINER 100% LEBAR */
+        .container {
+            width: 100%;
+            padding: 40px 20px;
+            margin: 0 auto;
+        }
+
+        .center-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .active-screen {
+            display: block;
+            animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .hidden-screen {
+            display: none !important;
+        }
+
+        .happy-title-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title-main {
+            font-family: 'Fredoka One', cursive;
+            font-size: 4.5rem;
+            color: var(--biru-utama);
+            text-shadow: 4px 4px 0px var(--bg-putih), 8px 8px 0px rgba(56, 189, 248, 0.2);
+            margin-bottom: 10px;
+            animation: wiggle 3s infinite;
+        }
+
+        .title-sub {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--aksen-pink);
+            background: var(--bg-putih);
+            display: inline-block;
+            padding: 5px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(244, 114, 182, 0.3);
+        }
+
+        .card {
+            background: var(--bg-putih);
+            border-radius: 30px;
+            padding: 40px;
+            margin-top: 20px;
+            box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15);
+            border: 4px solid var(--bg-putih);
+        }
+
+        .menu-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .btn-cute {
+            background: var(--biru-utama);
+            border: none;
+            padding: 18px 30px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.5rem;
+            color: var(--bg-putih);
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 0 var(--biru-gelap), 0 15px 20px rgba(2, 132, 199, 0.2);
+            text-transform: uppercase;
+        }
+
+        .btn-cute:active {
+            transform: translateY(8px);
+            box-shadow: 0 0 0 var(--biru-gelap), 0 5px 10px rgba(2, 132, 199, 0.2);
+        }
+
+        .btn-cute:hover {
+            background: #2cb1eb;
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .btn-kuning {
+            background: var(--aksen-kuning);
+            color: #b45309;
+            box-shadow: 0 8px 0 #ca8a04, 0 15px 20px rgba(202, 138, 4, 0.2);
+        }
+
+        .btn-kuning:active {
+            box-shadow: 0 0 0 #ca8a04;
+        }
+
+        .btn-kuning:hover {
+            background: #facc15;
+        }
+
+        .input-group label {
+            display: block;
+            font-family: 'Fredoka One', cursive;
+            color: var(--biru-utama);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            background: var(--bg-biru-muda);
+            border: 3px solid var(--biru-utama);
+            border-radius: 20px;
+            color: var(--teks-utama);
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--aksen-pink);
+            box-shadow: 0 0 0 5px rgba(244, 114, 182, 0.3);
+            background: var(--bg-putih);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .btn-cat {
+            background: var(--bg-putih);
+            border: 3px dashed var(--biru-utama);
+            color: var(--biru-utama);
+            padding: 25px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cat:hover {
+            border-style: solid;
+            background: var(--biru-utama);
+            color: var(--bg-putih);
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
+        }
+
+        /* QUIZ INTERFACE (FULL 100%) */
+        .quiz-card {
+            width: 100%;
+            border: 5px solid var(--bg-putih);
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .badge {
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .bg-biru {
+            background: var(--biru-utama);
+            color: var(--bg-putih);
+        }
+
+        .bg-ungu {
+            background: var(--aksen-ungu);
+            color: var(--bg-putih);
+        }
+
+        .bg-pink {
+            background: var(--aksen-pink);
+            color: var(--bg-putih);
+            letter-spacing: 2px;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 15px;
+            background: var(--bg-biru-muda);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 2px solid var(--bg-putih);
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--aksen-hijau), var(--biru-utama));
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 20px;
+        }
+
+        .question-number {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--aksen-ungu);
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            width: 100%;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            color: var(--teks-utama);
+            white-space: pre-line;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .option-row {
+            background: var(--bg-putih);
+            border: 3px solid var(--bg-biru-muda);
+            padding: 20px 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .option-letter {
+            width: 50px;
+            height: 50px;
+            background: var(--aksen-kuning);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.5rem;
+            color: #b45309;
+            box-shadow: 0 4px 0 #ca8a04;
+        }
+
+        .option-row:hover {
+            border-color: var(--biru-utama);
+            background: #f0f9ff;
+            transform: translateX(15px);
+        }
+
+        .option-row.selected-ans {
+            background: var(--biru-utama) !important;
+            border-color: var(--biru-gelap) !important;
+            color: var(--bg-putih);
+        }
+
+        .option-row.selected-ans .option-letter {
+            background: var(--bg-putih);
+            color: var(--biru-utama);
+            box-shadow: 0 4px 0 var(--bg-biru-muda);
+        }
+
+        .option-row.locked-ans {
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 15px;
+        }
+
+        .btn-nav {
+            flex: 1;
+            padding: 15px;
+            background: var(--bg-biru-muda);
+            border: none;
+            color: var(--biru-gelap);
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+
+        .btn-nav:hover {
+            background: var(--biru-utama);
+            color: var(--bg-putih);
+            transform: scale(1.05);
+        }
+
+        .btn-surrender {
+            background: #ffe4e6;
+            color: #e11d48;
+        }
+
+        .btn-surrender:hover {
+            background: var(--aksen-pink);
+            color: var(--bg-putih);
+        }
+
+        /* MODAL VALIDASI INSTAN */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.7);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-putih);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border: 6px solid var(--biru-utama);
+            transform: scale(0.7);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+
+        #valid-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        #valid-msg {
+            font-size: 1.4rem;
+            color: var(--teks-utama);
+            font-weight: bold;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        /* HASIL AKHIR & LAINNYA */
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            background: var(--bg-putih);
+            border-radius: 50%;
+            border: 8px solid var(--aksen-hijau);
+            margin: 0 auto 30px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(74, 222, 128, 0.3);
+        }
+
+        #result-score {
+            font-family: 'Fredoka One', cursive;
+            font-size: 4rem;
+            color: var(--aksen-hijau);
+            line-height: 1;
+        }
+
+        .status-msg {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            color: var(--aksen-pink);
+            margin: 15px 0;
+        }
+
+        .feedback-text {
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid var(--aksen-hijau);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #166534;
+            margin: 20px 0;
+        }
+
+        .btn-group-nav {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            width: 100%;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .style-review-box {
+            margin-top: 30px;
+            background: var(--bg-putih);
+            border: 4px dashed var(--biru-utama);
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .review-item {
+            padding: 20px 0;
+            border-bottom: 2px dashed var(--bg-biru-muda);
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .cute-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+            font-family: 'Nunito', sans-serif;
+            margin-bottom: 30px;
+        }
+
+        .cute-table th,
+        .cute-table td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .cute-table th {
+            color: var(--biru-gelap);
+            font-weight: 900;
+            font-size: 1.2rem;
+            background: var(--bg-biru-muda);
+        }
+
+        .cute-table th:first-child {
+            border-radius: 15px 0 0 15px;
+        }
+
+        .cute-table th:last-child {
+            border-radius: 0 15px 15px 0;
+        }
+
+        .cute-table tr td {
+            background: var(--bg-putih);
+            border-bottom: 2px solid var(--bg-biru-muda);
+            border-top: 2px solid var(--bg-biru-muda);
+        }
+
+        .cute-table tr td:first-child {
+            border-left: 2px solid var(--bg-biru-muda);
+            border-radius: 15px 0 0 15px;
+            font-weight: bold;
+        }
+
+        .cute-table tr td:last-child {
+            border-right: 2px solid var(--bg-biru-muda);
+            border-radius: 0 15px 15px 0;
+            font-weight: bold;
+        }
+
+        .cute-table tr:hover td {
+            background: #f0f9ff;
+            transform: scale(1.01);
+            transition: all 0.2s;
+        }
+
+        .recursive-box {
+            text-align: center;
+            border: 4px dashed var(--aksen-ungu);
+            padding: 25px;
+            border-radius: 20px;
+            background: #faf5ff;
+            margin-bottom: 30px;
+        }
+
+        #recursive-total-score {
+            color: #9333ea;
+            font-size: 2.5rem;
+            font-family: 'Fredoka One', cursive;
+            margin-top: 10px;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes wiggle {
+
+            0%,
+            100% {
+                transform: rotate(-2deg);
+            }
+
+            50% {
+                transform: rotate(2deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Latar Belakang Gelembung -->
+    <div class="bubble-bg">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <div class="container">
+        <!-- ================= SCREEN 1: MENU UTAMA ================= -->
+        <section id="screen-menu" class="active-screen center-container">
+            <div class="happy-title-container">
+                <h1 class="title-main">✨ Kuis Seru IT-Insight ✨</h1>
+                <h2 class="title-sub">Belajar IT Sambil Senyum-Senyum Sendiri! 🤭</h2>
+            </div>
+
+            <div class="menu-box">
+                <button class="btn-cute" onclick="goToRegistration()">🚀 Mulai Main Yuks!</button>
+                <button class="btn-cute btn-kuning" onclick="showLeaderboardView()">🏆 Papan Skor Kece</button>
+            </div>
+        </section>
+
+        <!-- ================= SCREEN 2: REGISTRASI & KATEGORI ================= -->
+        <section id="screen-reg" class="hidden-screen center-container">
+            <div class="card">
+                <h2
+                    style="text-align:center; font-family:'Fredoka One'; color:var(--aksen-pink); font-size: 2rem; margin-bottom:20px;">
+                    Halo Teman Baru! 👋</h2>
+                <div class="input-group">
+                    <label for="username">Kenalan dulu dong, namamu siapa?</label>
+                    <input type="text" id="username" placeholder="Ketik nama panggilanmu di sini..." autocomplete="off">
+                </div>
+
+                <h3 style="margin-top:30px; color:var(--biru-utama); font-family:'Fredoka One'; text-align:center;">
+                    Pilih Kategori Serunya:</h3>
+                <div class="category-grid" id="category-container"></div>
+
+                <div style="text-align: center; margin-top: 10px;">
+                    <button class="btn-cute btn-kuning" style="padding: 10px 30px; font-size: 1rem;"
+                        onclick="goToMenu()">Kembali ke Awal 🏠</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SCREEN 3: GAMEPLAY KUIS ================= -->
+        <section id="screen-quiz" class="hidden-screen">
+            <div class="card quiz-card">
+                <div class="quiz-header">
+                    <div class="badge bg-biru" id="quiz-category-badge">KATEGORI</div>
+                    <div class="badge bg-ungu" id="quiz-level-badge">LEVEL 1</div>
+                    <div class="badge bg-pink" id="quiz-lives-badge">💖 💖 💖 💖</div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar" id="quiz-progress"></div>
+                </div>
+
+                <div class="question-number" id="question-number-text">Soal 1 dari 10</div>
+                <div class="question-text" id="question-display">Pertanyaan akan muncul di sini...</div>
+
+                <div class="options-container" id="options-display"></div>
+
+                <div class="quiz-navigation">
+                    <button class="btn-nav" id="btn-prev" onclick="handlePrevQuestion()">⬅️ Mundur Dulu</button>
+                    <button class="btn-nav btn-surrender" onclick="handleSurrender()">🏳️ Nyerah Aja Deh</button>
+                    <button class="btn-nav" id="btn-next" onclick="handleNextQuestion()">Lanjut Gass ➡️</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SCREEN 4: EVALUASI HASIL ================= -->
+        <section id="screen-result" class="hidden-screen center-container">
+            <div class="card">
+                <h2
+                    style="text-align:center; font-family:'Fredoka One'; color:var(--biru-utama); font-size: 2.5rem; margin-bottom:20px;">
+                    Yayy! Selesai Juga! 🎉</h2>
+
+                <div class="score-circle">
+                    <span id="result-score">0</span>
+                    <small style="font-weight: 800; color: #15803d;">POIN KAMU</small>
+                </div>
+
+                <div style="text-align:center;">
+                    <p style="font-size:1.5rem; font-weight:800; color:var(--teks-utama);">Kamu berhasil jawab benar
+                        <strong id="result-correct" style="color:var(--aksen-hijau); font-size: 1.8rem;">0</strong>
+                        soal! 🥳
+                    </p>
+                    <p id="result-status" class="status-msg">STATUS LULUS</p>
+                    <div id="result-feedback" class="feedback-text">Feedback pemahaman...</div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <button class="btn-cute btn-kuning" style="width:100%;" onclick="showReviewSection()">🔍 Intip Kunci
+                        Jawaban Yuks!</button>
+                    <div class="btn-group-nav" id="navigation-after-quiz"></div>
+                </div>
+            </div>
+
+            <div id="review-section" class="hidden-screen style-review-box">
+                <h3
+                    style="color:var(--aksen-ungu); text-align:center; font-family:'Fredoka One'; font-size: 1.8rem; margin-bottom: 20px;">
+                    Lembar Jawaban Kamu 📝</h3>
+                <div id="review-list"></div>
+            </div>
+        </section>
+
+        <!-- ================= SCREEN 5: LEADERBOARD ================= -->
+        <section id="screen-leaderboard" class="hidden-screen center-container">
+            <div class="card">
+                <h2
+                    style="text-align:center; font-family:'Fredoka One'; color:var(--biru-utama); font-size: 2.5rem; margin-bottom:30px;">
+                    🏆 Papan Juara Kece 🏆</h2>
+
+                <div style="overflow-x: auto;">
+                    <table class="cute-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nama Jagoan</th>
+                                <th>Kategori</th>
+                                <th>Lvl</th>
+                                <th>Poin</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-rows"></tbody>
+                    </table>
+                </div>
+
+                <div class="recursive-box">
+                    <p style="font-weight: bold; color: var(--teks-utama);">Total Poin Keren Semua Pemain Dihitung Pakai
+                        Rekursi nih:</p>
+                    <h3 id="recursive-total-score">0 Poin ✨</h3>
+                </div>
+
+                <div style="text-align: center;">
+                    <button class="btn-cute" onclick="goToMenu()">🏠 Balik ke Beranda</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================= MODAL VALIDASI INSTAN ================= -->
+    <div id="validation-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 id="valid-title">JUDUL</h2>
+            <p id="valid-msg">PESAN VALIDASI</p>
+            <button class="btn-cute" onclick="closeValidationAndNext()">Okee, Lanjut Gass 🚀</button>
+        </div>
+    </div>
+
+    <script>
+        // DATA DATABASE SOAL 
+        const BANK_SOAL = {
+            "General IT Knowledge": {
+                "Level 1": [
+                    { "pertanyaan": "Siapakah pencipta awal sistem operasi Linux?", "pilihan": ["Bill Gates", "Linus Torvalds", "Steve Jobs", "Dennis Ritchie"], "jawaban": "Linus Torvalds" },
+                    { "pertanyaan": "Wi-Fi mengirimkan data tanpa kabel menggunakan gelombang...", "pilihan": ["Serat Optik", "Gelombang Radio", "Sinar Inframerah", "Sinar Laser"], "jawaban": "Gelombang Radio" },
+                    { "pertanyaan": "Siapakah penemu bahasa pemrograman Python?", "pilihan": ["James Gosling", "Guido van Rossum", "Bjarne Stroustrup", "Tim Berners-Lee"], "jawaban": "Guido van Rossum" },
+                    { "pertanyaan": "Perangkat keras mana yang bertugas sebagai alat input data?", "pilihan": ["Monitor", "Keyboard", "Printer", "Speaker"], "jawaban": "Keyboard" },
+                    { "pertanyaan": "Apakah kepanjangan dari istilah WWW?", "pilihan": ["World Wide Web", "World Whole Web", "Wide World Web", "Web World Wide"], "jawaban": "World Wide Web" },
+                    { "pertanyaan": "Siapakah penemu komputer pertama 'Analytical Engine'?", "pilihan": ["Alan Turing", "Charles Babbage", "Ada Lovelace", "John von Neumann"], "jawaban": "Charles Babbage" },
+                    { "pertanyaan": "Perusahaan manakah yang mengembangkan OS Windows?", "pilihan": ["Apple", "Microsoft", "Google", "IBM"], "jawaban": "Microsoft" },
+                    { "pertanyaan": "Manakah komponen yang merupakan otak utama komputer?", "pilihan": ["RAM", "CPU", "Harddisk", "GPU"], "jawaban": "CPU" },
+                    { "pertanyaan": "Bluetooth bekerja menggunakan koneksi nirkabel jarak...", "pilihan": ["Jauh", "Pendek", "Antariksa", "Global"], "jawaban": "Pendek" },
+                    { "pertanyaan": "Apakah fungsi utama dari perangkat keras bernama Monitor?", "pilihan": ["Menyimpan Data", "Menampilkan Visual", "Memproses Logika", "Mencetak Teks"], "jawaban": "Menampilkan Visual" }
+                ],
+                "Level 2": [
+                    { "pertanyaan": "Memori super cepat yang menjembatani CPU dan RAM adalah...", "pilihan": ["SSD", "Cache Memory", "ROM", "Flashdisk"], "jawaban": "Cache Memory" },
+                    { "pertanyaan": "Algoritma page replacement yang menghapus halaman paling lama tidak diakses adalah...", "pilihan": ["FIFO", "LRU (Least Recently Used)", "LFU", "Random"], "jawaban": "LRU (Least Recently Used)" },
+                    { "pertanyaan": "Algoritma page replacement yang menghapus halaman berdasarkan frekuensi paling sedikit dipakai adalah...", "pilihan": ["FIFO", "LFU (Least Frequently Used)", "LRU", "Optimal"], "jawaban": "LFU (Least Frequently Used)" },
+                    { "pertanyaan": "Algoritma substitusi halaman memori yang memakai prinsip masuk-pertama keluar-pertama adalah...", "pilihan": ["LRU", "FIFO (First In First Out)", "LFU", "LIFO"], "jawaban": "FIFO (First In First Out)" },
+                    { "pertanyaan": "Sensor apa pada kacamata VR yang mendeteksi rotasi gerakan kepala?", "pilihan": ["Proximity", "Gyroscope", "Barometer", "Light Sensor"], "jawaban": "Gyroscope" },
+                    { "pertanyaan": "Penyimpanan volatile yang datanya hilang saat komputer dimatikan adalah...", "pilihan": ["Harddisk", "RAM", "SSD", "Flashdisk"], "jawaban": "RAM" },
+                    { "pertanyaan": "Tempat penyimpanan data jangka panjang non-volatile berbasis piringan magnetik disebut...", "pilihan": ["SSD", "HDD", "RAM", "Cache"], "jawaban": "HDD" },
+                    { "pertanyaan": "Penyimpanan modern kecepatan tinggi tanpa piringan bergerak adalah...", "pilihan": ["HDD", "SSD", "Disket", "Pita Magnetik"], "jawaban": "SSD" },
+                    { "pertanyaan": "Perangkat jaringan yang bertugas menghubungkan dua subnet berbeda adalah...", "pilihan": ["Switch", "Router", "Hub", "Repeater"], "jawaban": "Router" },
+                    { "pertanyaan": "Perangkat pintar yang menyalurkan data hanya ke MAC Address tujuan dalam satu LAN adalah...", "pilihan": ["Hub", "Switch", "Repeater", "Bridge"], "jawaban": "Switch" }
+                ]
+            },
+            "Tebak Code Python": {
+                "Level 1": [
+                    { "pertanyaan": "Berapakah output dari:\nx = 5\nx += 3\nprint(x)", "pilihan": ["5", "8", "3", "Error"], "jawaban": "8" },
+                    { "pertanyaan": "Berapakah hasil dari operasi modulus berikut:\nprint(10 % 3)", "pilihan": ["3", "1", "0", "3.33"], "jawaban": "1" },
+                    { "pertanyaan": "Apakah output dari:\na = 10\nif a > 15:\n    print('X')\nelse:\n    print('Y')", "pilihan": ["X", "Y", "XY", "None"], "jawaban": "Y" },
+                    { "pertanyaan": "Berapa kali perulangan ini mencetak kata 'IT'?\nfor i in range(3):\n    print('IT')", "pilihan": ["2 kali", "3 kali", "4 kali", "0 kali"], "jawaban": "3 kali" },
+                    { "pertanyaan": "Apakah tipe data dari variabel berikut:\nnilai = 4.5", "pilihan": ["int", "float", "str", "bool"], "jawaban": "float" },
+                    { "pertanyaan": "Berapakah output dari logika boolean berikut:\nprint(True and False)", "pilihan": ["True", "False", "None", "Error"], "jawaban": "False" },
+                    { "pertanyaan": "Perhatikan loop berikut:\nc = 0\nwhile c < 2:\n    c += 1\nprint(c)", "pilihan": ["0", "2", "1", "3"], "jawaban": "2" },
+                    { "pertanyaan": "Apakah hasil dari penggabungan string berikut:\nprint('Kuis' + 'IT')", "pilihan": ["Kuis shadow", "KuisIT", "Kuis+IT", "Error"], "jawaban": "KuisIT" },
+                    { "pertanyaan": "Perhatikan kondisi berikut:\nx = 5\nif x > 2 and x < 10:\n    print('A')\nelse:\n    print('B')", "pilihan": ["B", "A", "AB", "None"], "jawaban": "A" },
+                    { "pertanyaan": "Keyword apa yang dipakai untuk menghentikan loop secara paksa?", "pilihan": ["continue", "break", "pass", "exit"], "jawaban": "break" }
+                ],
+                "Level 2": [
+                    { "pertanyaan": "Apakah output dari:\ndef sapa(nama):\n    return 'Halo ' + nama\nprint(sapa('Budi'))", "pilihan": ["Halo nama", "Halo Budi", "Budi", "Error"], "jawaban": "Halo Budi" },
+                    { "pertanyaan": "Method string apa untuk mengubah teks menjadi huruf kapital semua?", "pilihan": ["lower()", "upper()", "strip()", "split()"], "jawaban": "upper()" },
+                    { "pertanyaan": "Berapakah output dari panjang list berikut:\ndata = [10, 20, 30]\nprint(len(data))", "pilihan": ["10", "3", "20", "1"], "jawaban": "3" },
+                    { "pertanyaan": "Bagaimanakah cara mengambil angka 99 dari list: angka = [11, 99, 45]?", "pilihan": ["angka[0]", "angka[1]", "angka[2]", "angka[-3]"], "jawaban": "angka[1]" },
+                    { "pertanyaan": "Method list apa yang dipakai untuk menambah elemen baru di bagian akhir?", "pilihan": ["pop()", "append()", "remove()", "insert()"], "jawaban": "append()" },
+                    { "pertanyaan": "Berapakah output dari:\nuser = {'id': 12, 'nama': 'Ali'}\nprint(user['nama'])", "pilihan": ["id", "Ali", "12", "nama"], "jawaban": "Ali" },
+                    { "pertanyaan": "Manakah dari tipe data koleksi berikut yang bersifat immutable (tidak bisa diubah)?", "pilihan": ["List", "Tuple", "Dictionary", "Set"], "jawaban": "Tuple" },
+                    { "pertanyaan": "Berapakah nilai keluaran dari metode string berikut:\nteks = '  python  '\nprint(teks.strip())", "pilihan": ["'  python'", "'python'", "'python  '", "'py thon'"], "jawaban": "'python'" },
+                    { "pertanyaan": "Apakah output dari slice list berikut:\nkata = ['P', 'Y', 'T', 'H', 'O', 'N']\nprint(kata[0:2])", "pilihan": ["['P']", "['P', 'Y']", "['P', 'Y', 'T']", "['Y', 'T']"], "jawaban": "['P', 'Y']" },
+                    { "pertanyaan": "Apakah hasil dari eksekusi fungsi tanpa return statement ini:\ndef tes():\n    x = 5\nprint(tes())", "pilihan": ["5", "None", "Error", "0"], "jawaban": "None" },
+                    { "pertanyaan": "Berapakah output dari:\nlogs = [200, 404, 200, 500]\nprint(logs.count(200))", "pilihan": ["1", "2", "3", "4"], "jawaban": "2" },
+                    { "pertanyaan": "Keyword apakah yang digunakan untuk mendefinisikan fungsi di Python?", "pilihan": ["function", "def", "func", "define"], "jawaban": "def" },
+                    { "pertanyaan": "Bagaimana cara mengubah isi dictionary agar usia menjadi 20: profil = {'usia': 19}?", "pilihan": ["profil.add('usia', 20)", "profil['usia'] = 20", "profil[0] = 20", "profil.update(20)"], "jawaban": "profil['usia'] = 20" },
+                    { "pertanyaan": "Apakah output dari kodingan berikut:\nitems = [1, 2, 3]\nitems.pop()\nprint(items)", "pilihan": ["[1]", "[1, 2]", "[2, 3]", "[]"], "jawaban": "[1, 2]" },
+                    { "pertanyaan": "Berapakah hasil dari perkalian list berikut:\nprint([0] * 3)", "pilihan": ["[0]", "[0, 0, 0]", "0", "Error"], "jawaban": "[0, 0, 0]" }
+                ],
+                "Level 3": [
+                    { "pertanyaan": "Berapakah hasil pemanggilan fungsi rekursif faktorial(3) ini:\ndef faktorial(n):\n    if n <= 1: return 1\n    return n * faktorial(n-1)", "pilihan": ["3", "6", "1", "9"], "jawaban": "6" },
+                    { "pertanyaan": "Kompleksitas Big-O dari pencarian elemen dengan mencocokkan key pada Dictionary adalah...", "pilihan": ["O(N)", "O(1)", "O(log N)", "O(N^2)"], "jawaban": "O(1)" },
+                    { "pertanyaan": "Kompleksitas Big-O dari pencarian linear sekuensial menelusuri List satu demi satu adalah...", "pilihan": ["O(1)", "O(N)", "O(N log N)", "O(2^N)"], "jawaban": "O(N)" },
+                    { "pertanyaan": "Berapakah hasil konversi kode ASCII karakter berikut:\nprint(chr(ord('A') + 1))", "pilihan": ["A", "B", "66", "Error"], "jawaban": "B" },
+                    { "pertanyaan": "Manakah tipe data koleksi Python yang secara otomatis membuang elemen duplikat?", "pilihan": ["List", "Set", "Tuple", "Dictionary"], "jawaban": "Set" },
+                    { "pertanyaan": "Apakah hasil operasi irisan set berikut:\na = {1, 2, 3}; b = {2, 3, 4}\nprint(a & b)", "pilihan": ["{1, 4}", "{2, 3}", "{1, 2, 3, 4}", "set()"], "jawaban": "{2, 3}" },
+                    { "pertanyaan": "Berapakah output dari fungsi rekursif berikut:\ndef jumlah(n):\n    if n == 1: return 1\n    return n + jumlah(n-1)\nprint(jumlah(4))", "pilihan": ["4", "10", "6", "8"], "jawaban": "10" },
+                    { "pertanyaan": "Apakah output dari pengurutan berikut:\na = [3, 1, 2]\na.sort()\nprint(a)", "pilihan": ["[3, 2, 1]", "[1, 2, 3]", "[3, 1, 2]", "None"], "jawaban": "[1, 2, 3]" },
+                    { "pertanyaan": "Manakah algoritma sorting yang menggunakan metode Divide and Conquer secara rekursif?", "pilihan": ["Bubble Sort", "Merge Sort", "Insertion Sort", "Selection Sort"], "jawaban": "Merge Sort" },
+                    { "pertanyaan": "Struktur data Nested Dictionary menjamin pencarian kunci kuis berada pada performa...", "pilihan": ["Linear", "Konstan / O(1)", "Kuadratik", "Eksponensial"], "jawaban": "Konstan / O(1)" },
+                    { "pertanyaan": "Apa yang terjadi jika fungsi rekursif tidak memiliki base case?", "pilihan": ["Selesai Normal", "Stack Overflow / RecursionError", "Nilai Nol", "Runtime Ok"], "jawaban": "Stack Overflow / RecursionError" },
+                    { "pertanyaan": "Apakah hasil operasi gabungan set berikut:\ns1 = {1}; s2 = {2}\nprint(s1.union(s2))", "pilihan": ["{1}", "{1, 2}", "{3}", "set()"], "jawaban": "{1, 2}" },
+                    { "pertanyaan": "Berapakah output fungsi berikut:\nprint(chr(65))", "pilihan": ["65", "A", "B", "Error"], "jawaban": "A" },
+                    { "pertanyaan": "Berapakah hasil fungsi berikut:\nprint(ord('B'))", "pilihan": ["65", "66", "A", "2"], "jawaban": "66" },
+                    { "pertanyaan": "Manakah kompleksitas Big-O yang paling tidak efisien untuk data skala masif?", "pilihan": ["O(1)", "O(N^2)", "O(log N)", "O(N)"], "jawaban": "O(N^2)" },
+                    { "pertanyaan": "Istilah pemanfaatan AI untuk membantu menulis draf baris kode kodingan disebut...", "pilihan": ["Cyber Security", "AI-Augmented Programming", "Cloud Storage", "IoT"], "jawaban": "AI-Augmented Programming" },
+                    { "pertanyaan": "Algoritma sorting yang bekerja dengan cara menukar elemen berdekatan secara berulang adalah...", "pilihan": ["Quick Sort", "Bubble Sort", "Merge Sort", "Radix Sort"], "jawaban": "Bubble Sort" },
+                    { "pertanyaan": "Apakah output dari:\nprint([x for x in range(3) if x % 2 == 0])", "pilihan": ["[1]", "[0, 2]", "[0, 1, 2]", "[]"], "jawaban": "[0, 2]" },
+                    { "pertanyaan": "Berapakah panjang elemen dari objek set berikut: s = {1, 2, 2, 3}?", "pilihan": ["4", "3", "2", "1"], "jawaban": "3" },
+                    { "pertanyaan": "Konsep memecahan masalah besar menjadi sub-masalah kecil yang serupa dinamakan...", "pilihan": ["Enkapsulasi", "Dekomposisi / Rekursi", "Inheritansi", "Polimorfisme"], "jawaban": "Dekomposisi / Rekursi" }
+                ]
+            }
+
+        };
+
+        let RIWAYAT_SKOR = [
+            { "nama": "Jeno_Ceria", "kategori": "General IT Knowledge", "level": 2, "skor": 85 },
+            { "nama": "Siti_Imut", "kategori": "General IT Knowledge", "level": 1, "skor": 90 }
+        ];
+
+        let currentUser = "Kakak_Anonim";
+        let currentCategory = "";
+        let currentLevel = 1;
+        let currentLives = 4;
+
+        let activeQuestionsList = [];
+        let activeShuffledOptions = [];
+        let userSelectedAnswers = [];
+        let statusSudahDijawab = [];
+        let currentQuestionIndex = 0;
+        let isLulusEvaluasi = true;
+
+        function switchScreen(screenId) {
+            document.querySelectorAll('section').forEach(s => {
+                s.classList.remove('active-screen');
+                s.classList.add('hidden-screen');
+            });
+            document.getElementById(screenId).classList.remove('hidden-screen');
+            document.getElementById(screenId).classList.add('active-screen');
+        }
+
+        function goToMenu() { switchScreen('screen-menu'); }
+
+        function goToRegistration() {
+            switchScreen('screen-reg');
+            const container = document.getElementById('category-container');
+            container.innerHTML = '';
+
+            Object.keys(BANK_SOAL).forEach(cat => {
+                let btn = document.createElement('button');
+                btn.className = 'btn-cat';
+                btn.innerText = cat + " 🤩";
+                btn.onclick = () => startQuizSession(cat);
+                container.appendChild(btn);
+            });
+        }
+
+        function startQuizSession(category, level = 1) {
+            const inputName = document.getElementById('username').value.trim();
+            currentUser = inputName ? inputName : "Kakak_Anonim";
+            currentCategory = category;
+            currentLevel = level;
+
+            if (currentLevel === 1) currentLives = 4;
+            else if (currentLevel === 2) currentLives = 3;
+            else currentLives = 1;
+
+            let masterSoal = BANK_SOAL[currentCategory][`Level ${currentLevel}`];
+
+            activeQuestionsList = [...masterSoal].sort(() => Math.random() - 0.5);
+            activeShuffledOptions = [];
+
+            activeQuestionsList.forEach(soal => {
+                activeShuffledOptions.push([...soal.pilihan].sort(() => Math.random() - 0.5));
+            });
+
+            userSelectedAnswers = new Array(activeQuestionsList.length).fill(null);
+            statusSudahDijawab = new Array(activeQuestionsList.length).fill(false);
+            currentQuestionIndex = 0;
+            isLulusEvaluasi = true;
+
+            document.getElementById('review-section').classList.add('hidden-screen');
+            updateQuizUI();
+            switchScreen('screen-quiz');
+        }
+
+        function updateQuizUI() {
+            document.getElementById('quiz-category-badge').innerText = currentCategory.toUpperCase();
+            document.getElementById('quiz-level-badge').innerText = `TINGKAT ${currentLevel} ✨`;
+            document.getElementById('quiz-lives-badge').innerText = currentLives > 0 ? '💖 '.repeat(currentLives) : '😭 Huhu Habis';
+
+            let pct = ((currentQuestionIndex + 1) / activeQuestionsList.length) * 100;
+            document.getElementById('quiz-progress').style.width = `${pct}%`;
+
+            document.getElementById('question-number-text').innerText = `Soal ${currentQuestionIndex + 1} dari ${activeQuestionsList.length}`;
+
+            let soalAktif = activeQuestionsList[currentQuestionIndex];
+            document.getElementById('question-display').innerText = soalAktif.pertanyaan;
+
+            const optionsContainer = document.getElementById('options-display');
+            optionsContainer.innerHTML = '';
+
+            const abjad = ["A", "B", "C", "D"];
+            let pilihanSekarang = activeShuffledOptions[currentQuestionIndex];
+
+            pilihanSekarang.forEach((opsi, i) => {
+                let div = document.createElement('div');
+                div.className = 'option-row';
+
+                // Warnai biru jika ini opsi yang dipilih user
+                if (userSelectedAnswers[currentQuestionIndex] === abjad[i]) {
+                    div.classList.add('selected-ans');
+                }
+
+                // Kunci dan redupkan opsi jika soal ini sudah pernah dijawab
+                if (statusSudahDijawab[currentQuestionIndex]) {
+                    div.classList.add('locked-ans');
+                }
+
+                div.innerHTML = `
+                    <span class="option-letter">${abjad[i]}</span>
+                    <span class="option-text">${opsi}</span>
+                `;
+
+                div.onclick = () => handleSelectAnswer(abjad[i], opsi);
+                optionsContainer.appendChild(div);
+            });
+
+            document.getElementById('btn-prev').style.visibility = currentQuestionIndex === 0 ? 'hidden' : 'visible';
+
+            // // Sembunyikan tombol 'Lanjut' jika soal ini BELUM dijawab. Wajib jawab dulu!
+            // if (statusSudahDijawab[currentQuestionIndex]) {
+            //     document.getElementById('btn-next').style.visibility = currentQuestionIndex === activeQuestionsList.length - 1 ? 'hidden' : 'visible';
+            // } else {
+            //     document.getElementById('btn-next').style.visibility = 'hidden';
+            // }
+        }
+
+        // FUNGSI UTAMA KETIKA MEMILIH JAWABAN
+        function handleSelectAnswer(huruf, teksOpsi) {
+            // Jika sudah dijawab, hentikan eksekusi (cegah klik ganda)
+            if (statusSudahDijawab[currentQuestionIndex]) return;
+
+            let soalAktif = activeQuestionsList[currentQuestionIndex];
+            userSelectedAnswers[currentQuestionIndex] = huruf;
+            statusSudahDijawab[currentQuestionIndex] = true;
+
+            let isCorrect = (teksOpsi === soalAktif.jawaban);
+
+            if (!isCorrect) {
+                currentLives--;
+            }
+
+            // Segera perbarui tampilan UI agar tombol yang dipilih berwarna biru dan opsi terkunci
+            updateQuizUI();
+
+            // Beri jeda 150ms lalu tampilkan Modal Validasi
+            setTimeout(() => {
+                showValidationModal(isCorrect, soalAktif.jawaban);
+            }, 150);
+        }
+
+        // MEMANGGIL MODAL VALIDASI
+        function showValidationModal(isCorrect, correctAnswer) {
+            const modal = document.getElementById('validation-modal');
+            const title = document.getElementById('valid-title');
+            const msg = document.getElementById('valid-msg');
+
+            if (isCorrect) {
+                title.innerHTML = "✨ JAWABAN ANDA BENAR! ✨";
+                title.style.color = "var(--aksen-hijau)";
+                msg.innerHTML = "Wihh pinter banget! Jawabanmu tepat sasaran! Lanjutkan yaa! 🎉";
+            } else {
+                title.innerHTML = "😭 JAWABAN ANDA SALAH!";
+                title.style.color = "#e11d48";
+                msg.innerHTML = `Yang benar adalah:<br><br><strong style="font-size:1.5rem; color:var(--aksen-hijau); background:#f0fdf4; padding:10px 20px; border-radius:15px; display:inline-block; border: 2px dashed var(--aksen-hijau); margin-top:10px;">${correctAnswer}</strong>`;
+            }
+
+            modal.classList.add('show');
+        }
+
+        // MENUTUP MODAL & MELANJUTKAN KUIS
+        function closeValidationAndNext() {
+            document.getElementById('validation-modal').classList.remove('show');
+
+            // Cek apakah game over karena nyawa habis
+            if (currentLives <= 0) {
+                isLulusEvaluasi = false;
+                triggerEndEvaluation();
+                return;
+            }
+
+            // Otomatis lompat ke soal selanjutnya
+            if (currentQuestionIndex < activeQuestionsList.length - 1) {
+                currentQuestionIndex++;
+                updateQuizUI();
+            } else {
+                triggerEndEvaluation();
+            }
+        }
+
+        function handlePrevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                updateQuizUI();
+            }
+        }
+
+        function handleNextQuestion() {
+            if (currentQuestionIndex < activeQuestionsList.length - 1) {
+                currentQuestionIndex++;
+                updateQuizUI();
+            }
+        }
+
+        function handleSurrender() {
+            alert("Nyerah nih? Cupu ah~ canda ding! 😜 Semangaaat belajar lagi!");
+            goToMenu();
+        }
+
+        // EVALUASI AKHIR
+        function triggerEndEvaluation() {
+            let totalSoal = activeQuestionsList.length;
+            let jawabanBenarCount = 0;
+            const labelMap = { "A": 0, "B": 1, "C": 2, "D": 3 };
+
+            for (let i = 0; i < totalSoal; i++) {
+                let userAnsLetter = userSelectedAnswers[i];
+                if (userAnsLetter !== null) {
+                    let indexOpsi = labelMap[userAnsLetter];
+                    let teksPilihanUser = activeShuffledOptions[i][indexOpsi];
+                    if (teksPilihanUser === activeQuestionsList[i]["jawaban"]) {
+                        jawabanBenarCount++;
+                    }
+                }
+            }
+
+            let skorAkhir = totalSoal > 0 ? Math.round((jawabanBenarCount / totalSoal) * 100) : 0;
+
+            RIWAYAT_SKOR.push({
+                nama: currentUser, kategori: currentCategory, level: currentLevel, skor: skorAkhir
+            });
+
+            document.getElementById('result-score').innerText = skorAkhir;
+            document.getElementById('result-correct').innerText = jawabanBenarCount;
+
+            let statusText = document.getElementById('result-status');
+            let feedbackText = document.getElementById('result-feedback');
+            let navAfterQuiz = document.getElementById('navigation-after-quiz');
+            navAfterQuiz.innerHTML = '';
+
+            if (!isLulusEvaluasi || currentLives <= 0) {
+                statusText.innerText = "YAAH GAGAL 😭";
+                feedbackText.innerText = "Nyawa kamu habis atau nilai masih kurang. Ayo semangat lagi, jangan nangis pojokan ya! 🤭";
+                isLulusEvaluasi = false;
+            } else {
+                statusText.innerText = "WAHH LULUS! 🌟";
+                feedbackText.innerText = "Selamat ya jagoan! Kamu berhasil menaklukkan level ini! 🤩";
+            }
+
+            if (isLulusEvaluasi) {
+                navAfterQuiz.innerHTML = `
+                    <button class="btn-cute" onclick="startQuizSession('${currentCategory}', ${currentLevel + 1})">Gass Level Berikutnya 🚀</button>
+                    <button class="btn-cute btn-kuning" onclick="goToMenu()">Pulang ke Menu 🏠</button>
+                `;
+            } else {
+                navAfterQuiz.innerHTML = `
+                    <button class="btn-cute" onclick="startQuizSession('${currentCategory}', ${currentLevel})">Coba Ulang Level Ini 💪</button>
+                    <button class="btn-cute btn-kuning" onclick="goToMenu()">Pulang ke Menu 🏠</button>
+                `;
+            }
+
+            switchScreen('screen-result');
+        }
+
+        // REVIEW JAWABAN
+        function showReviewSection() {
+            const reviewBox = document.getElementById('review-section');
+            reviewBox.classList.remove('hidden-screen');
+            const listContainer = document.getElementById('review-list');
+            listContainer.innerHTML = '';
+            const labelMap = { "A": 0, "B": 1, "C": 2, "D": 3 };
+
+            activeQuestionsList.forEach((soal, idx) => {
+                let jawabHuruf = userSelectedAnswers[idx];
+                let teksJawabUser = "Kelewat (Belum Dijawab)";
+                if (jawabHuruf && labelMap[jawabHuruf] !== undefined) {
+                    teksJawabUser = activeShuffledOptions[idx][labelMap[jawabHuruf]];
+                }
+                let isCorrect = (teksJawabUser === soal.jawaban);
+                let statusSign = isCorrect ? "<span style='color:#16a34a; font-weight:900;'>✅ BETUL BINGIT!</span>" : "<span style='color:#e11d48; font-weight:900;'>❌ TETOOT SALAH!</span>";
+
+                let item = document.createElement('div');
+                item.className = 'review-item';
+                item.innerHTML = `
+                    <p style="font-size:1.4rem; color:var(--teks-utama); font-weight:800;"><strong>Soal ${idx + 1}:</strong> ${soal.pertanyaan}</p>
+                    <p style="margin-top:10px; font-size:1.2rem; color:#475569;">👉 Jawaban Kamu: <strong style="color:var(--biru-utama);">${jawabHuruf || '-'} (${teksJawabUser})</strong></p>
+                    <p style="font-size:1.2rem; color:#475569;">🎯 Kunci Jawaban: <strong style="color:var(--aksen-hijau);">${soal.jawaban}</strong></p>
+                    <p style="margin-top:5px; font-size:1.3rem;">Status: ${statusSign}</p>
+                `;
+                listContainer.appendChild(item);
+            });
+            reviewBox.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // REKURSI & BUBBLE SORT UNTUK LEADERBOARD
+        function hitungTotalSkorRekursif(daftarRiwayat, indeks = 0) {
+            if (indeks >= daftarRiwayat.length) return 0;
+            return daftarRiwayat[indeks].skor + hitungTotalSkorRekursif(daftarRiwayat, indeks + 1);
+        }
+
+        function showLeaderboardView() {
+            const tbody = document.getElementById('leaderboard-rows');
+            tbody.innerHTML = '';
+            let dataSort = [...RIWAYAT_SKOR];
+            let n = dataSort.length;
+
+            for (let i = 0; i < n; i++) {
+                for (let j = 0; j < n - i - 1; j++) {
+                    if (dataSort[j].skor < dataSort[j + 1].skor) {
+                        let temp = dataSort[j];
+                        dataSort[j] = dataSort[j + 1];
+                        dataSort[j + 1] = temp;
+                    }
+                }
+            }
+
+            dataSort.forEach((data, index) => {
+                let medal = index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : "";
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="text-align:center;">${medal} ${index + 1}</td>
+                    <td style="color:var(--biru-utama); font-family:'Fredoka One'; font-size:1.2rem;">${data.nama}</td>
+                    <td>${data.kategori}</td>
+                    <td>Lvl ${data.level}</td>
+                    <td style="color:var(--aksen-hijau); font-family:'Fredoka One'; font-size:1.3rem;">${data.skor}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('recursive-total-score').innerText = `${hitungTotalSkorRekursif(RIWAYAT_SKOR)} Poin ✨`;
+            switchScreen('screen-leaderboard');
+        }
+
+        // --- TAMBAHAN: FUNGSI ENTER PADA INPUT NAMA ---
+        document.getElementById('username').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                // 1. Menghilangkan garis kursor vertikal
+                this.blur();
+
+                // 2. Mengarahkan fokus ke container kategori
+                const categoryContainer = document.getElementById('category-container');
+                if (categoryContainer) {
+                    categoryContainer.focus();
+                    // Memberikan sedikit scroll agar pilihan kategori terlihat jelas
+                    categoryContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
