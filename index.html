@@ -1132,9 +1132,14 @@
 
             let skorAkhir = totalSoal > 0 ? Math.round((jawabanBenarCount / totalSoal) * 100) : 0;
 
-            RIWAYAT_SKOR.push({
-                nama: currentUser, kategori: currentCategory, level: currentLevel, skor: skorAkhir
-            });
+            if (namaInput !== "") {
+                RIWAYAT_SKOR.push({
+                    nama: currentUser,
+                    kategori: currentCategory,
+                    level: currentLevel,
+                    skor: skorAkhir
+                });
+            }
 
             document.getElementById('result-score').innerText = skorAkhir;
             document.getElementById('result-correct').innerText = jawabanBenarCount;
