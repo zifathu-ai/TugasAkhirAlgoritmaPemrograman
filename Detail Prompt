@@ -1,0 +1,114 @@
+# Detail Interaksi
+Interaksi 1 (Minggu 13)
+Prompt: "Saya adalah seorang mahasiswa Informatika dan ingin membuat project mini quiz untuk keperluan tugas akhir saya. Di dalam mini quiz tersebut akan ada 2 kategori dan tiap kategori mempunyai 3 level(easy, medium, dan hard). Struktur data apa yang bagus untuk menyimpan soal mini quiz tersebut dan cocok untuk memisahkan kategori ini?"
+Respons AI: AI menyarankan menggunakan Nested Dictionary dikombinasikan dengan list of dictionary.
+Yang digunakan: kerangka dasar struktur data Nested Dictionary untuk menampung seluruh pertanyaan mini quiz.
+Modifikasi: AI memberikan contoh struktur penyimpan data, saya memodifikasi dan merombak penamaan kategori dan isi pertanyaannya.
+Pelajaran: AI sangat baik dan relevan dalam memahami studi kasus dalam project ini, dia memberikan rekomendasi struktur data yang sesuai untuk pengembangan project ini.
+
+# Interaksi 2 (Minggu 13)
+Prompt: "Data soal saya kan di namakan BANK_SOAl. Bagaimana cara mengambil data tersebut, seperti memanggil nama-nama kategori dari dictionary secara otomatis dan tidak ada yang duplikat, bagaimana caranya?"
+Respons AI: AI menjelaskan bahwa untuk mengambil data dari dictionary. Kita bisa memanfaatkan fungsi .keys(). AI menyarankan juga untuk mengubah hasil ekstraksi tersebut menjadi List dengan perintah list() agar mudah dipanggil.
+Yang digunakan: Penggunaan fungsi .keys() untuk membaca data.
+Modifikasi: Tidak ada modifikasi secara signifikan, kami mengikuti saran dari AI untuk mengubah menjadi list.
+Pelajaran: Menggunakan tipe data set dan metode bawaan seperti .keys().
+
+# Interaksi 3 (Minggu 13)
+Prompt: "Buatkan fungsi untuk menampilkan halaman utama dari pada quiz tersebut dengan menampilkan list kategori."
+Respons AI: AI meng-generate blok fungsi berisi serangkaian print() dengan pemformatan batas garis =, beserta perulangan while True kecil untuk meminta input dan mengembalikannya (return).
+Yang digunakan: Fungsi tampilkan_menu_utama(), desain tata letak Command Line Interface (CLI), dan validasi dasar pengembalian string.
+Modifikasi: Saya menyesuaikan tampilan dan menyempurnakan baris validasi menjadi if pilihan in ["1", "2", "3"]: yang langsung menangkap tipe data string asli dari input() tanpa perlu melakukan konversi (casting) ke integer.
+Pelajaran: Memisahkan komponen visual antarmuka ke dalam sebuah fungsi independen membuat blok kode utama main().
+
+
+# Interaksi 4 (Minggu 13)
+Prompt: "Di menu utama, buatkan saya kode untuk meminta input nama pemain. Jika pemain menekan Enter tanpa mengetik apa pun, otomatis beri nama 'Pelajar_Anonymous'. Lalu, tampilkan list kategori kuis dan buatkan perulangan while agar jika user memilih kategori dengan mengetik huruf, program menolak dan meminta input ulang tanpa error crash."
+Respons AI: AI memberikan logika kondisional if not nama: untuk menangani string kosong, serta merancang kerangka while True yang di dalamnya disematkan blok pada perintah int(input()).
+Yang digunakan: Deteksi string kosong pada input, perulangan while True, pemanfaatan enumerate untuk mencetak list kategori, dan blok penangkap error.
+Modifikasi: AI hanya menangkap error huruf. Saya memodifikasinya dengan menambahkan aturan rentang indeks (if 1 <= pilih_kat <= len(list_kategori)). Jadi, jika user mengetik angka tapi di luar daftar (misal angka 9), program tetap menolak dengan aman tanpa crash.
+Pelajaran: Validasi input berlapis adalah fondasi keamanan program (Error Handling). Memadukan penangkap error tipe data dengan logika batasan rentang indeks akan mencegah bug fatal saat program berjalan.
+
+
+# Interaksi 5 (Minggu 13)
+Prompt: "Sekarang kita buat fungsi jalankan_gameplay. Di baris awal, buatkan aturan percabangan if-else: target level 1 dapat 4 nyawa, level 2 dapat 3 nyawa, dan level 3 dapat 1 nyawa. Lalu berikan kode untuk mengambil list soal spesifik dari BANK_SOAL dan mengacak urutan soal tersebut tanpa mengubah data aslinya."
+Respons AI: AI merancang struktur if-elif-else untuk inisialisasi nyawa. Untuk ekstraksi soal, AI memberikan sintaks pemanggilan Nested Dictionary, lalu menyarankan metode random.sample() dari modul random untuk mengacak daftar soal menjadi list baru.
+Yang digunakan: Logika penugasan variabel nyawa, akses value dictionary, dan pemanfaatan fungsi random.sample().
+Modifikasi: Saya memastikan proses inisialisasi nyawa dan ekstraksi ini ada di baris teratas fungsi agar tidak mengganggu looping permainan di bawahnya, dan menjadikan total_soal dinamis menggunakan len().
+Pelajaran: Mengatur state variable (seperti nyawa) di awal sebuah modul permainan sangat krusial untuk menjaga aliran kontrol data yang terstruktur.
+
+
+# Interaksi 6 (Minggu 14)
+Prompt: "Ini bagian penting. Saya tidak hanya mau soalnya diacak, tapi saya ingin pilihan gandanya (opsi A, B, C, D) juga diacak secara dinamis setiap kali soal muncul. Bagaimana cara menyalin list 'pilihan' dari tiap soal, lalu mengacak isinya tanpa merusak database asli, dan menyimpannya?"
+Respons AI: AI menyarankan untuk membuat list baru yang menampung opsi, lalu melakukan looping ke dalam daftar soal. Di dalam loop tersebut, AI menyarankan penggunaan list() untuk membuat salinan (copy) dan memanggil random.shuffle() untuk mengocok opsi pilihan tersebut.
+Yang digunakan: Pembuatan array terpisah urutan_pilihan_diacak dan pemanggilan metode random.shuffle().
+Modifikasi: Saran AI langsung saya terapkan utuh, namun saya menambahkan logika urutan_pilihan_diacak.append(opsi_copy) agar urutan acak setiap soal terekam dan tersinkronisasi dengan indeks soal (idx), sehingga saat user menekan Prev/Next, urutan opsinya tidak berubah lagi.
+Pelajaran: Option Shuffling membuat kuis memiliki tingkat replayability yang tinggi. Saya belajar membedakan penggunaan random.sample() untuk membuat salinan acak, dan random.shuffle() untuk mengocok elemen secara in-place.
+
+
+
+# Interaksi 7 (Minggu 14)
+Prompt: "Untuk menampilkan soal satu per satu, buatkan while-loop tampilkan teks pertanyaan, lalu buatkan perulangan untuk menampilkan pilihan ganda yang sudah diacak tadi dan berikan label huruf A, B, C, D di depannya."
+Respons AI: AI menyarankan penggunaan perulangan while idx < total_soal. Di dalamnya, AI memberikan kerangka print() untuk pertanyaan dan menyediakan list statis labels = ["A", "B", "C", "D"] yang digabungkan dengan enumerate untuk mencetak pilihan secara dinamis.
+Yang digunakan: Kerangka while-loop indeks, string formatting, dan teknik iterasi enumerate dengan list labels.
+Modifikasi: Saya menambahkan baris visual print untuk mencetak sisa nyawa menggunakan string multiplier berupa ikon hati ('❤️' * nyawa) agar tampilannya terasa seperti game.
+Pelajaran: Pemisahan antara manipulasi data (di belakang layar) dengan komponen visual antarmuka membuat arsitektur kode menjadi jauh lebih rapi dan modular.
+
+
+# Interaksi 8 (Minggu 14)
+Prompt: "Minta pengguna memasukkan jawaban dengan batas input yang valid: 'A', 'B', 'C', 'D', 'N' (Next), 'P' (Prev), dan 'S' (Surrend). Jika input di luar itu, suruh ulangi. Buat agar string navigasi petunjuknya dinamis (contoh: huruf P tidak muncul di layar kalau masih di soal pertama)."
+Respons AI: AI memberikan logika array opsi_valid dan menggunakan pengkondisian if idx > 0 untuk memunculkan teks navigasi Prev, dan if idx < total_soal - 1 untuk Next. AI lalu membungkus fungsi input() dalam while True.
+Yang digunakan: Logika validasi himpunan array in opsi_valid, manipulasi teks navigasi secara conditional, dan fungsi kapitalisasi otomatis .upper().
+Modifikasi: Tidak ada modifikasi logika, namun saya menyesuaikan teks notifikasi peringatannya agar lebih tegas saat pengguna menekan keyboard yang salah.
+Pelajaran: User Experience (UX) sangat penting dalam program CLI. Menghilangkan opsi "Prev" saat berada di soal pertama akan mencegah pengguna kebingungan.
+
+
+# Interaksi 9 (Minggu 14)
+Prompt: "Sekarang buat logika dari input user. Jika 'P', kurangi idx dan continue. Jika 'N', tambah idx dan continue. Jika menjawab A/B/C/D, bagaimana cara mencocokkan huruf yang diinput user dengan teks jawaban asli di dalam list opsi yang sudah diacak tadi?"
+Respons AI: AI menyarankan pembuatan Dictionary mapping sederhana label_map = {"A": 0, "B": 1, "C": 2, "D": 3}. Dengan ini, huruf "A" akan dikonversi menjadi angka 0, lalu angka ini digunakan sebagai indeks untuk memanggil teks asli di dalam array pilihan_sekarang.
+Yang digunakan: Konsep manipulasi indeks, continue statement, dan teknik Dictionary Mapping.
+Modifikasi: Saya menerapkan mapping ini lalu membandingkan teks_pilihan_user langsung dengan kunci soal['jawaban']. Jika salah, nyawa akan dikurangi 1.
+Pelajaran: Ini adalah teknik yang sangat brilian. Memisahkan antara "Huruf yang ditekan" dengan "Teks jawaban asli" memungkinkan logika permainan tetap berjalan akurat meskipun posisi opsi A, B, C, D telah diacak.
+
+
+# Interaksi 10 (Minggu 14)
+Prompt: "Ada kecurangan. Jika pengguna menjawab salah, nyawanya berkurang, lalu dia tekan 'P' (mundur) ke soal itu dan menjawab benar, nyawanya jadi manipulatif. Tolong buatkan list of boolean untuk melacak setiap indeks soal agar jika soal sudah dijawab, sistem hanya menge-print status 'Tetap Benar/Salah' tanpa mengurangi nyawa lagi."
+Respons AI: AI merancang inisialisasi variabel sudah_dijawab = [False] * total_soal di luar loop, dan menempatkan pengecekan if not sudah_dijawab[idx]: sebelum mengeksekusi logika pemotongan nyawa.
+Yang digunakan: Penerapan array of booleans sebagai alat pelacak riwayat (state tracker).
+Modifikasi: Saya tidak hanya mengubah status soal, tapi saya juga menambahkan variabel penampung jawaban_user[idx] = jawaban agar saya bisa menyimpan huruf pasti apa yang diinput user untuk keperluan fitur ulasan nanti.
+Pelajaran: Celah eksploitasi dalam interaksi program harus diselesaikan dengan nalar logika manusia. Array Tracker adalah solusi elegan dengan kompleksitas waktu sangat rendah untuk mengingat state permainan.
+
+
+
+
+# Interaksi 11 (Minggu 15)
+Prompt: "Di akhir permainan, buatkan kalkulasi skor_akhir berdasarkan persentase hitungan total soal benar. Kemudian, buat percabangan evaluasi: Level 1 (nyawa 4=A, nyawa 3=A-), Level 2 (nyawa 3=A, lainnya=B), dan kembalikan nilai 'LULUS' atau 'GAGAL' ke sistem."
+Respons AI: AI memberikan blok perulangan for untuk menghitung jawaban_benar_count dengan mencocokkan kembali mapping huruf. Lalu, AI merancang perhitungan rumus persentase dan membuat blok if-elif panjang untuk memberikan hasil evaluasi.
+Yang digunakan: Operasi perhitungan aritmatika persentase, perulangan perhitungan akhir, dan percabangan konversi grade.
+Modifikasi: Saya memodifikasinya dengan menyimpan skor_akhir beserta nama pemain ke dalam database global RIWAYAT_SKOR menggunakan .append(). Data ini saya persiapkan untuk fitur Leaderboard antar pemain.
+Pelajaran: Algoritma konversi data kalkulasi menjadi nilai huruf (grading) memperkuat pemahaman saya mengenai Conditional Logic tingkat lanjut.
+
+
+# Interaksi 12 (Minggu 15)
+Prompt: "Saya ingin menambahkan fitur review_jawaban_pemain sebelum fungsi gameplay mereturn 'LULUS/GAGAL'. Fungsi ini akan menampilkan seluruh soal kembali, opsi jawaban yang dipilih user (teksnya), dan kunci jawaban benarnya, beserta status BENAR atau SALAH."
+Respons AI: AI membuatkan satu fungsi baru yang beriterasi menggunakan fungsi enumerate(daftar_soal). AI menggunakan Mapping huruf kembali untuk mengonversi huruf yang disimpan di array tracker agar teks jawaban yang diprint sesuai dengan posisi yang diacak.
+Yang digunakan: Implementasi fungsi review_jawaban_pemain dan format output string review.
+Modifikasi: Saya menyadari bahwa user mungkin melakukan skip soal menggunakan tombol "N" tanpa menjawab. Oleh karena itu, saya tambahkan logika else: teks_jawab_user = "Dilewati" agar program tidak error jika array jawaban bernilai None.
+Pelajaran: Mendesain fitur ulasan (review) melatih kemampuan saya untuk menelusuri ulang himpunan array (array soal, array jawaban user, dan array opsi acak) secara paralel dan selaras.
+
+
+# Interaksi 13 (Minggu 15)
+Prompt: "Saya sudah punya variabel list of dictionary RIWAYAT_SKOR. Buatkan fungsi tampilkan_leaderboard(). Di dalamnya, saya minta Anda mengimplementasikan algoritma Sorting manual 'Bubble Sort' untuk mengurutkan skor dari tertinggi ke terendah. Saya juga butuh fungsi kecil terpisah dengan algoritma 'Rekursi' untuk menghitung total akumulasi skor seluruh pemain."
+Respons AI: AI mengimplementasikan iterasi ganda Bubble Sort untuk menukar Dictionary di dalam list berdasarkan key ['skor']. Untuk rekursi, AI membuat fungsi hitung_total_skor_rekursif() dengan base case jika indeks melebihi panjang list maka return 0.
+Yang digunakan: Implementasi Algoritma Sorting (Bubble Sort) dan struktur dasar fungsi Rekursif (Pemecahan masalah).
+Modifikasi: Saya memperbaiki tata letak spasi dari fungsi print leaderboard agar mencetak kolom nama, kategori, level, dan skor secara sejajar dan rapi layaknya tabel sungguhan.
+Pelajaran: Ini adalah pemenuhan CPMK mata kuliah yang paling vital. Saya belajar secara langsung bagaimana algoritma konvensional (Bubble Sort) dapat mengolah tipe data terstruktur (List of Dictionary), dan betapa ringkasnya fungsi Rekursi untuk menjumlahkan elemen di dalam kumpulan data.
+
+
+# Interaksi 14 (Minggu 15)
+Prompt: “Terakhir, tolong satukan semua ini di dalam fungsi main(). Buatkan menu transisi navigasi_setelah_kuis jika lulus lanjut level, jika gagal ulang level. Lalu sambungkan ke menu utama agar user bisa bermain, melihat leaderboard, atau keluar secara utuh."
+Respons AI: AI memberikan kerangka while besar di fungsi main(). AI menghubungkan pemanggilan menu, registrasi, perulangan while level_sekarang <= 3, dan implementasi fungsi navigasi agar jika user pilih 'LANJUT', maka nilai level_sekarang += 1.
+Yang digunakan: Konsep penggabungan program utuh (Integration), pemanfaatan struktur return values untuk mengontrol aliran transisi antar fungsi, dan siklus perulangan utama game.
+Modifikasi: Saya merapikan alur logika dari menu utama. Jika user menekan menu "2" untuk melihat Leaderboard, saya beri instruksi tambahan input("Tekan Enter untuk kembali") lalu continue, agar sistem tidak langsung melompat ke proses kuis secara paksa.
+Pelajaran: Tahap penyatuan End-to-End membuktikan betapa pentingnya dekomposisi (Computational Thinking). Membangun program dari ratusan baris fungsi terpisah lalu disatukan dalam satu otak main(), membuat program menjadi elegan, tidak tumpang tindih, dan mudah di-maintenance.
+Refleksi:
+AI membantu mempercepat implementasi, terutama untuk kode boilerplate (menu, formatting output). Namun, desain arsitektur dan penanganan edge cases tetap dilakukan sendiri. Saya memahami seluruh kode yang dikumpulkan.
